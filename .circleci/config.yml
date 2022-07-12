@@ -42,6 +42,6 @@ jobs:
       - store_test_results:
           path: test-results.xml
       - run:
-          name: Upload Failed Tests
-          command: curl --data fail_tests.log http://example.com/error_logs
+          name: on error
+          command: echo "Hello error!"
           when: on_fail
