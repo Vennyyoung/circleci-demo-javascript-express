@@ -10,7 +10,7 @@ jobs:
   build:
     working_directory: ~/mern-starter
     docker:
-      - image: circleci/node:10.16.3
+      - image: circleci/node:13.8.0
       - image: mongo:4.2.0
     steps:
       - checkout
@@ -40,3 +40,7 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results.xml
+      - run:
+          name: Upload Failed Tests
+          command: curl --data fail_tests.log http://example.com/error_logs
+          when: on_fail
